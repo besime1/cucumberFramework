@@ -40,5 +40,10 @@ public class LoginPage extends BaseClass {
         sendText(password, pswd);
         clickButWaitForClickability(loginBtn);
     }
+    public void loginToWebsiteViaConfigs(String user, String pswd) {
+        sendText(username, user);
+        sendText(password, pswd);
+        clickButWaitForClickability(loginBtn);
+    }
 
 }
