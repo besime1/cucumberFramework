@@ -1,22 +1,23 @@
-Feature: Add new employee
-  Scenario: Add with first name and last name
+@login
+Feature:Login tests
+  @smoke
+  Scenario: Valid user login test
     Given user is on the exelenter webpage
-    And user logs in with valid admin credentials
-    * user navigates to the add employee list page
-    When user add a new employee by entering firstname and lastname
-    Then new employee information is displayed in the personal details page
+    When user logs in with valid admin credentials
+    Then welcome message is displayed in dashboard page
+  @smoke
 
-  Scenario: Add without employee ID
+  Scenario: Valid username invalid password test
     Given user is on the exelenter webpage
-    And user logs in with valid admin credentials
-    * user navigates to the add employee list page
-    * user delete the employee id field
-    When user add a new employee by entering firstname and lastname
-    Then new employee information is displayed in the personal details page
+    When user pass the valid username and invalid password
+    Then login error message for invalid password is displayed
+  @regression @smoke
 
-  Scenario: Add with login credentials
+  Scenario: Valid username empty password test
     Given user is on the exelenter webpage
-    And user logs in with valid admin credentials
-    * user navigates to the add employee list page
-    When user add a new employee with login credentials
-    Then new employee information is displayed in the personal details page
+    When user pass the valid username and empty password
+    Then login error message for empty password is displayed
+
+
+    #  TestNG  order ===> Actual, Expected, Optional Message.
+    #  JUnit   order ===> Optional Message, Expected, Actual
