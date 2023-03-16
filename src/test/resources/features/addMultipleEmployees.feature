@@ -14,3 +14,13 @@ Feature:Adding multiple employees
       | Sophia     | L.          | Kim       | Sophia L. Kim         |
       | David      | A.          | Evans     | David A. Evans        |
       | Gabrielle  | R.          | Thompson  | Gabrielle R. Thompson |
+# 2nd way
+  @dataTable
+  Scenario: Adding multiple employees
+    When user enters employee's full name and click on save button
+      | First Name | Middle Name | Last Name |
+      | Ariana     | A.          | Knight    |
+      | Zain       | H.          | Bailey    |
+      | Alexis     | J.          | Cameron   |
+    Then employee is added successfully
+
