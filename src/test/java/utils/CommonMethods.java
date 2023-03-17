@@ -15,6 +15,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
+
 import static base.BaseClass.*;
 
 /**
@@ -24,7 +25,6 @@ import static base.BaseClass.*;
 
 
 public class CommonMethods extends PageInitializer {
-
     /**
      * Method will switch focus to next window/tab based on the window title/name
      * @param windowTitle String
@@ -42,6 +42,7 @@ public class CommonMethods extends PageInitializer {
 
     /**
      * This method will clear and then send value to input field(s).
+     *
      * @param element WebElement
      * @param value   String
      */
@@ -52,6 +53,7 @@ public class CommonMethods extends PageInitializer {
 
     /**
      * Simple click method
+     *
      * @param element WebElement
      */
     public static void click(WebElement element) {
@@ -83,6 +85,7 @@ public class CommonMethods extends PageInitializer {
 
     /**
      * Method will wait for the given element based on the visibility of Element
+     *
      * @param by By locator
      */
     public static void waitForVisibilityOfElement(By by) {
@@ -219,8 +222,9 @@ public class CommonMethods extends PageInitializer {
 
     /**
      * Method will scroll down to paragraph(s) given by number of paragraph(s) as index and locator of <p> as second argument
+     *
      * @param index number of paragraph(s) to scroll down to. How many paragraphs you want to scroll to, enter it here.
-     * @param by web element locator of paragraph goes here.
+     * @param by    web element locator of paragraph goes here.
      */
     public static void scrollToParagraph(int index, By by) {
         String script = "window.scrollTo(0, document.body.scrollHeight)";
@@ -278,6 +282,7 @@ public class CommonMethods extends PageInitializer {
 
     /**
      * Method will scroll up based on given pixel
+     *
      * @param pixel int
      */
     public static void scrollUp(int pixel) {
@@ -285,44 +290,44 @@ public class CommonMethods extends PageInitializer {
     }
 
     /**
-     * This method will take a screenshot using older version of (v3) selenium. Extension defined as .png (You can change to .jpeg from CommonMethods when needed)
+     * This method will take a screenshot using older version of Selenium (v3). Extension defined as .png (You can change to .jpeg from CommonMethods when needed)
      * @param fileName String as screenshot name
      */
-    public static String  takeScreenshot(String fileName) {
+    public static String takeScreenshot(String fileName) {
         TakesScreenshot takesScreenshot = (TakesScreenshot) driver;
         File sourceFile = takesScreenshot.getScreenshotAs(OutputType.FILE);
         try {
-            FileUtils.copyFile(sourceFile, new File("screenshots/" + fileName + "_" + ".png"));
+            FileUtils.copyFile(sourceFile, new File("screenshots/" + fileName + "_" + getTimeStamp() + ".png"));
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("Screenshot is not taken");
         }
-        return  fileName;
+        return fileName;
     }
+
     /**
      * This method will take a screenshot based on the given web element
      * @param element which its screenshot needs to be taken
      * @param fileName screenshot file name, Defaulted to .png format (can be changed to .jpeg within the method if needed).
      * @return .png file as a String
      */
-    public  static String  takeScreenshot(WebElement element ,String fileName) {
+    public static String takeScreenshot(WebElement element, String fileName) {
         File sourceFile = element.getScreenshotAs(OutputType.FILE);
         try {
-            FileUtils.copyFile(sourceFile, new File("screenshots/" + fileName + " _" + getTimeStamp() + ".png"));
+            FileUtils.copyFile(sourceFile, new File("screenshots/" + fileName + "_" + getTimeStamp() + ".png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
         return fileName;
     }
 
-
-    public static String randomStrongPassWord(){
+    public static String randomStrongPassWord() {
         String passWord = "";
         Random rnd = new Random();
         String lowerLetter = "abcdefghijklmnoprstuwxyz";
         String capitalLetters = "ABCDEFGHIJKLMNOPRSTUWXYZ";
         String specialChar = "!#$%&()*+,-.:;<=>?@[]^_{|}~";
-        while (passWord.length() < 12){
+        while (passWord.length() < 12) {
             passWord += lowerLetter.charAt(rnd.nextInt(lowerLetter.length()));
             passWord += capitalLetters.charAt(rnd.nextInt(capitalLetters.length()));
             passWord += specialChar.charAt(rnd.nextInt(specialChar.length()));
@@ -330,12 +335,11 @@ public class CommonMethods extends PageInitializer {
         }
         return passWord;
     }
-    public  static String  getTimeStamp(){
-        Date date =new Date();
-        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd_HH_mm_ss_SS");//YYYY-MM-DD-Hour-Min-Sec
-       return simpleDateFormat.format(date.getTime());
 
+    public static String getTimeStamp() {
+        Date date = new Date();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd_HH_mm_ss_SS"); // YYYY-MM-DD_Hour_Min_Sec_Milliseconds
+        return simpleDateFormat.format(date.getTime());
     }
-
 
 }

@@ -7,6 +7,10 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 // We need to import Apache POI libraries for this to work.
 public class ExcelUtility {
@@ -37,16 +41,8 @@ public class ExcelUtility {
         return sheet.getRow(0).getLastCellNum();       // This method will return total count of columns.
     }
 
-    private static String getCell(int rowIndex, int columnIndex){
-        String cellValue = "";
-        try {
-            if (sheet.getRow(rowIndex).getCell(columnIndex) != null) {
-                cellValue = sheet.getRow(rowIndex).getCell(columnIndex).toString();
-            }
-        } catch (NullPointerException e) {
-            System.out.println("Cell is empty at row " + rowIndex + " column " + columnIndex);
-        }
-        return cellValue;
+    private static String getCell(int rowIndex, int columnIndex) {       // This method will read from a cell based on the index of given row and column.
+        return sheet.getRow(rowIndex).getCell(columnIndex).toString();
     }
 
     public static Object[][] readFromExcel(String filePath, String sheetName) {
@@ -72,5 +68,15 @@ public class ExcelUtility {
         }
 
         return data;
+    }
+
+    // instead of inner loop, we need to use Maps.  (Big O Notation)
+    // create a method for Maps version. Retrieve data using Map instead of inner loop.
+
+    public static List<Map<String, String>>  readFromExcelMap() {
+        List<Map<String, String>> mapList = new ArrayList<>();
+        Map<String, String> map = new LinkedHashMap<>();
+        mapList.add(map);
+        return mapList;
     }
 }
