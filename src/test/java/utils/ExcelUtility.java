@@ -70,13 +70,26 @@ public class ExcelUtility {
         return data;
     }
 
-    // instead of inner loop, we need to use Maps.  (Big O Notation)
-    // create a method for Maps version. Retrieve data using Map instead of inner loop.
+    // Map version
 
-    public static List<Map<String, String>>  readFromExcelMap() {
+    public static List<Map<String, String>>  readFromExcelMap(String filepath,String sheetName) {
+        getFilePath(filepath);
+        getSheet(sheetName);
+
         List<Map<String, String>> mapList = new ArrayList<>();
-        Map<String, String> map = new LinkedHashMap<>();
-        mapList.add(map);
+
+
+        Map<String, String> map;
+        for (int i=0; i <rowCount(); i++){
+            map=new LinkedHashMap<>();
+
+            for (int j=0; j <colsCount(); j++){
+                map.put(getCell(0, j), getCell(i, j));
+            }
+            mapList.add(map);
+
+        }
+
         return mapList;
     }
 }

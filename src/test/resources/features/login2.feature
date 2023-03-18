@@ -6,11 +6,11 @@ Feature: Login Test
   Scenario: valid admin login
     When  admin user logs in with valid credentials
     Then admin user logs in successfully
-
+@smoke
   Scenario:valid ess login
     When ess user logs with valid credentials
     Then ess user logs in successfully
-
+@smoke
   Scenario Outline:
     When user enters a valid "<username>" and a "<password>"
     And user clicks on the login button
